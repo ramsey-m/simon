@@ -77,3 +77,5 @@ function startOver() {
   gamePattern = [];
   started = false;
 }
+
+//  font-family: 'Press Start 2P', cursive;
