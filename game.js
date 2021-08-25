@@ -1,12 +1,17 @@
 
-var buttonColours = ["red", "blue", "green", "yellow"];
+//2.array holding the different sounds
+let buttonColours = ["red", "blue", "green", "yellow"];
 
-var gamePattern = [];
-var userClickedPattern = [];
+//array to hold sequence for game pattern and sequence for user clicked pattern. 
+let gamePattern = [];
+let userClickedPattern = [];
 
-var started = false;
-var level = 0;
+let started = false;
 
+//track number of rounds played so fat
+let level = 0;
+
+//jquery start game with any keypress. 
 $(document).keypress(function() {
   if (!started) {
     $("#level-title").text("Level " + level);
@@ -15,9 +20,11 @@ $(document).keypress(function() {
   }
 });
 
+//when button clicked 
+
 $(".btn").click(function() {
 
-  var userChosenColour = $(this).attr("id");
+  let userChosenColour = $(this).attr("id");
   userClickedPattern.push(userChosenColour);
 
   playSound(userChosenColour);
@@ -25,6 +32,9 @@ $(".btn").click(function() {
 
   checkAnswer(userClickedPattern.length-1);
 });
+
+// main function. if game pattern at current level in array same as userclicked at current level,initiate next sequence function
+//with 1000 ms timeout. //if statement inside checkAnswer() check if most recent user answer is same as the game pattern.
 
 function checkAnswer(currentLevel) {
 
@@ -43,19 +53,28 @@ function checkAnswer(currentLevel) {
         $("body").removeClass("game-over");
       }, 200);
 
+    //reset the game. funcion below. 
       startOver();
     }
 }
 
-
+//when nextsequence funcition provoked level variable is incremented by 1 and the next sequence is prepared
 function nextSequence() {
   userClickedPattern = [];
   level++;
   $("#level-title").text("Level " + level);
-  var randomNumber = Math.floor(Math.random() * 4);
-  var randomChosenColour = buttonColours[randomNumber];
+
+  //1-random number between 0 and 3. var randomNumber selects random color from button color array.
+
+  let randomNumber = Math.floor(Math.random() * 4);
+  let randomChosenColour = buttonColours[randomNumber];
+
+  //3-push the color to game pattern array 
+
   gamePattern.push(randomChosenColour);
 
+
+  //4 animate button. with effects. and play sound. 
   $("#" + randomChosenColour).fadeIn(100).fadeOut(100).fadeIn(100);
   playSound(randomChosenColour);
 }
@@ -72,6 +91,7 @@ function playSound(name) {
   audio.play();
 }
 
+//resets the game 
 function startOver() {
   level = 0;
   gamePattern = [];
@@ -79,3 +99,6 @@ function startOver() {
 }
 
 //  font-family: 'Press Start 2P', cursive;
+
+
+//next up: create 2 player expericne. 
