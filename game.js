@@ -101,4 +101,4 @@ function startOver() {
 //  font-family: 'Press Start 2P', cursive;
 
 
-//next up: create 2 player expericne. 
+//next up: create two player expericne. 
