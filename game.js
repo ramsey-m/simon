@@ -98,7 +98,4 @@ function startOver() {
   started = false;
 }
 
-//  font-family: 'Press Start 2P', cursive;
-
-
 //next up: create two player expericne. 
